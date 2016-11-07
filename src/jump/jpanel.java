@@ -10,15 +10,17 @@ import javax.swing.JPanel;
 
 public class jpanel extends JPanel implements KeyListener,Runnable{
 	//initialize
+	//ground length
+	private static int BlockLength = 400;
 	//create two storage for the blocks
-	private static int[] groundOne = new int[2];
+	private static int[] groundOne = {100,410};
 	private static int[] groundtwo = new int[2];
 	
 	//record the ground level
-	private static int groundLevel = 0;
+	private static int groundLevel = groundOne[1]-10;
 	
 	//plater's height
-	private static int Height = 400;
+	private static int Height = groundLevel;
 	
 	//the speed that the player falls
 	private static float downspeed = 0;
@@ -68,7 +70,7 @@ public class jpanel extends JPanel implements KeyListener,Runnable{
 			}
 			
 			//gravity
-			if(Height < 400){
+			if(Height < groundLevel){
 				
 				//falls down
 				Height += downspeed;
@@ -104,11 +106,11 @@ public class jpanel extends JPanel implements KeyListener,Runnable{
 		
 		//paint ground one
 		//x, y, width, height
-		g.fillRect(groundOne[0], groundOne[1], 500, 10);
+		g.fillRect(groundOne[0], groundOne[1], BlockLength, 10);
 		
 		//paint ground two
 		//x, y, width, height
-		g.fillRect(groundtwo[0], groundtwo[1], 500, 10);
+		g.fillRect(groundtwo[0], groundtwo[1], BlockLength, 10);
 	
 	}
 	
@@ -148,14 +150,12 @@ public class jpanel extends JPanel implements KeyListener,Runnable{
 	//no use
 	@Override
 	public void keyReleased(KeyEvent e) {
-		// TODO 自动生成的方法存根
 		
 	}
 	
 	//no use
 	@Override
 	public void keyTyped(KeyEvent e) {
-		// TODO 自动生成的方法存根
 		
 	}
 	
@@ -171,7 +171,7 @@ public class jpanel extends JPanel implements KeyListener,Runnable{
 	
 	//check if the block is still in the panel
 	private static boolean BlockExist(int[] i){
-		
+		//disappear from the left
 		if (i[0] <= -500) {
 			return false;
 		}
@@ -182,8 +182,8 @@ public class jpanel extends JPanel implements KeyListener,Runnable{
 	private static int level(){
 		
 		//check if x = 100 is ground one
-		if (100 >= groundOne[0] & -400 <= groundOne[1]) {
-			
+		if (100 >= groundOne[0] & -400 <= groundOne[0]) {
+			groundLevel = groundtwo[1];
 		}
 		return Height;
 		

@@ -10,6 +10,7 @@ public class jump extends JFrame{
 		w.setContentPane(p);
 	}
 	public jump(){
+		setResizable(false);
 		setBounds(100,100,600,600);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}	
